@@ -60,6 +60,12 @@ class SQViewModelBase {
     }
     
     func onLayout(){ }
+    
+    public func setNeedLayout(width:CGFloat, height:CGFloat){
+        onMeasure(width: width, height: height)
+        onLayout()
+    }
+    
 }
 
 

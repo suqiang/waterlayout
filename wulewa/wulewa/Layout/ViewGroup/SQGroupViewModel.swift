@@ -12,9 +12,6 @@ class SQGroupViewModel: SQViewModelBase {
 
     var subViewModels: [SQViewModelBase] = [SQViewModelBase]()
 
-    
-    
-    
     required init(config: SQViewConfigBase, dataDict:[String:Any]) {
         super.init(config: config, dataDict: dataDict)
     

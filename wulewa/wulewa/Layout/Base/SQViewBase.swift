@@ -22,6 +22,8 @@ class SQViewBase: UIView {
     required init(layoutConfig config:SQViewConfigBase) {
         super.init(frame: CGRect.zero)
         backgroundColor = UIColor.random
+        
+        UIScrollView.appearance()
     }
     
     required init?(coder aDecoder: NSCoder) {

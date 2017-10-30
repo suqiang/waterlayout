@@ -9,7 +9,7 @@
 import UIKit
 
 class SQLinearLayoutViewConfig: SQGroupViewConfig {
-    let orientation: SQLinearLayoutOrientation = .horizontal
+    var orientation: SQLinearLayoutOrientation = .horizontal
     var gravity: String = "left|top"
 }
 

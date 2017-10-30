@@ -9,6 +9,10 @@
 import UIKit
 
 class SQLayoutViewController: UIViewController {
+    
+    var viewModel: SQViewModelBase!
+    
+    var rootView: SQViewBase!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,21 +43,24 @@ class SQLayoutViewController: UIViewController {
         
         let horizontalConfig1 = SQLinearLayoutViewConfig()
         horizontalConfig1.view = "linear_layout"
+        horizontalConfig1.orientation = .vertical
         horizontalConfig1.height_type = .wrap_content
         horizontalConfig1.width_type = .wrap_content
+        horizontalConfig1.height = 80
         
         
         let viewConfig11 = SQViewConfigBase()
-        viewConfig11.height = 100
+        viewConfig11.height = 30
         viewConfig11.height_type = .exactly
-        viewConfig11.width = 100
+        viewConfig11.width = 30
         viewConfig11.width_type = .exactly
         viewConfig11.margin = UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+        viewConfig11.layout_gravity = "bottom"
         
         let viewConfig22 = SQViewConfigBase()
-        viewConfig22.height = 50
+        viewConfig22.height = 150
         viewConfig22.height_type = .exactly
-        viewConfig22.width = 50
+        viewConfig22.width = 150
         viewConfig22.width_type = .exactly
         viewConfig22.margin = UIEdgeInsets(top: 15, left: 15, bottom: 15, right: 15)
         
@@ -64,11 +71,8 @@ class SQLayoutViewController: UIViewController {
         horizontalConfig.subviewConfigs.append(viewConfig2)
         horizontalConfig.subviewConfigs.append(horizontalConfig1)
         
-        
         let viewModel = SQLinearLayoutViewModel(config: horizontalConfig, dataDict: ["key1":"value1"])
-        
-        viewModel.onMeasure(width: 500, height: CGFloat(MAXFLOAT))
-        viewModel.onLayout()
+        viewModel.setNeedLayout(width: 500, height: CGFloat(MAXFLOAT))
         
         let rootView = SQLinearLayoutView(layoutConfig: horizontalConfig);
         
@@ -76,14 +80,20 @@ class SQLayoutViewController: UIViewController {
         
         self.view.addSubview(rootView)
         rootView.frame.origin.y = 100
+        self.viewModel = viewModel
+        self.rootView = rootView
         
-        
+    }
+    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         
     }
+
     
 
 }
