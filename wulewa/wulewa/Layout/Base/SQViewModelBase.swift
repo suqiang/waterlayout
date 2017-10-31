@@ -14,6 +14,14 @@ class SQViewModelBase {
     
     var superViewModel: SQViewModelBase?
     
+    var rootViewModel: SQViewModelBase{
+        var rootViewModel = self
+        while rootViewModel.superViewModel != nil{
+            rootViewModel = rootViewModel.superViewModel!
+        }
+        return rootViewModel
+    }
+    
     var dataDict: [String:Any]
     
     var visibility: SQVisibility = .visible

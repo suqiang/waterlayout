@@ -64,19 +64,26 @@ extension UIColor {
     /// 用十六进制颜色创建UIColor
     ///
     /// - Parameter hexColor: 十六进制颜色 (0F0F0F)
-    convenience init(hexColor: String) {
+    convenience init(hexString: String) {
+    
+        let hex = hexString.replacingOccurrences(of: "#", with: "")
+        
+        let count = hex.count
         
         // 存储转换后的数值
-        var red:UInt32 = 0, green:UInt32 = 0, blue:UInt32 = 0
+        var red:UInt32 = 0, green:UInt32 = 0, blue:UInt32 = 0, alpha: UInt32 = 0xff
         
+        if count == 8{
+            Scanner(string: hexString[count-8..<count-6]).scanHexInt32(&alpha)
+        }
         // 分别转换进行转换
-        Scanner(string: hexColor[0..<2]).scanHexInt32(&red)
+        Scanner(string: hexString[count-6..<count-4]).scanHexInt32(&red)
         
-        Scanner(string: hexColor[2..<4]).scanHexInt32(&green)
+        Scanner(string: hexString[count-4..<count-2]).scanHexInt32(&green)
         
-        Scanner(string: hexColor[4..<6]).scanHexInt32(&blue)
+        Scanner(string: hexString[count-2..<count]).scanHexInt32(&blue)
         
-        self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: 1.0)
+        self.init(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: CGFloat(alpha) / 255.0)
     }
 }
 
@@ -93,4 +100,18 @@ extension String {
         }
     }
 }
+
+extension UIColor {
+    class func color(withHex hexInt:Int) -> UIColor{
+        var alpha: CGFloat = 1.0
+        if hexInt > 0xffffff || (hexInt >= 0x80ffffff && hexInt < 0){
+            alpha = 1.0 - CGFloat((hexInt & 0xff000000) >> 24) / 255.0
+        }
+        let red = CGFloat(hexInt & 0x00ff0000) / 255.0
+        let green = CGFloat(hexInt & 0x0000ff00) / 255.0
+        let blue = CGFloat(hexInt & 0x000000ff) / 255.0
+        return UIColor(red: red, green: green, blue: blue, alpha: alpha)
+    }
+}
+
 

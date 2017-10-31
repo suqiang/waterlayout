@@ -21,8 +21,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
 //        let rootVc = RootViewController()
         
-        let rootVc = SQLayoutViewController()
-        
+//        let rootVc = SQLayoutViewController()
+        let rootVc = SQDemoViewController()
         
         let navi = NavigationController(rootViewController: rootVc)
         

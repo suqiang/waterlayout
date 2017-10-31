@@ -30,6 +30,9 @@
 		4F781D2A1FA188D40040D585 /* SQLinearLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F781D291FA188D40040D585 /* SQLinearLayoutView.swift */; };
 		4F781D2C1FA189130040D585 /* SQLinearLayoutViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F781D2B1FA189130040D585 /* SQLinearLayoutViewConfig.swift */; };
 		4F82BF111F8F5DC900C23B37 /* SQCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F82BF101F8F5DC900C23B37 /* SQCollectionViewWaterfallLayout.swift */; };
+		4F9BB0A11FA74C710038093B /* SQDemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB0A01FA74C710038093B /* SQDemoViewController.swift */; };
+		4F9BB0A41FA751A30038093B /* linear_layout_horizontal.json in Resources */ = {isa = PBXBuildFile; fileRef = 4F9BB0A31FA751A30038093B /* linear_layout_horizontal.json */; };
+		4F9BB0A61FA754E60038093B /* SQLayoutViewController的副本.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F9BB0A51FA754E60038093B /* SQLayoutViewController的副本.swift */; };
 		4FC8E2781FA6C59100C96E18 /* SQLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8E2771FA6C59100C96E18 /* SQLayoutViewController.swift */; };
 		4FC8E27B1FA6D01B00C96E18 /* SQUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8E27A1FA6D01B00C96E18 /* SQUtils.swift */; };
 /* End PBXBuildFile section */
@@ -81,6 +84,9 @@
 		4F781D291FA188D40040D585 /* SQLinearLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLinearLayoutView.swift; sourceTree = "<group>"; };
 		4F781D2B1FA189130040D585 /* SQLinearLayoutViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLinearLayoutViewConfig.swift; sourceTree = "<group>"; };
 		4F82BF101F8F5DC900C23B37 /* SQCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		4F9BB0A01FA74C710038093B /* SQDemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQDemoViewController.swift; sourceTree = "<group>"; };
+		4F9BB0A31FA751A30038093B /* linear_layout_horizontal.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = linear_layout_horizontal.json; sourceTree = "<group>"; };
+		4F9BB0A51FA754E60038093B /* SQLayoutViewController的副本.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SQLayoutViewController的副本.swift"; sourceTree = "<group>"; };
 		4FC8E2771FA6C59100C96E18 /* SQLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLayoutViewController.swift; sourceTree = "<group>"; };
 		4FC8E27A1FA6D01B00C96E18 /* SQUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQUtils.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -133,6 +139,7 @@
 		4F1A6DC51F8F197A00A0BCE9 /* wulewa */ = {
 			isa = PBXGroup;
 			children = (
+				4F9BB0A21FA751830038093B /* DemoConfig */,
 				4F3C5B671FA08E5E00551FC6 /* Layout */,
 				4F1A6DC61F8F197B00A0BCE9 /* AppDelegate.swift */,
 				4F1A6DC81F8F197B00A0BCE9 /* ViewController.swift */,
@@ -146,7 +153,9 @@
 				4F2085B91F96E663003CAFE8 /* SQCollectionViewHeader.swift */,
 				4F2085BB1F96E67C003CAFE8 /* SQCollectionViewFooter.swift */,
 				4F2085BD1F96F657003CAFE8 /* SQCollectionViewCell.swift */,
+				4F9BB0A51FA754E60038093B /* SQLayoutViewController的副本.swift */,
 				4FC8E2771FA6C59100C96E18 /* SQLayoutViewController.swift */,
+				4F9BB0A01FA74C710038093B /* SQDemoViewController.swift */,
 			);
 			path = wulewa;
 			sourceTree = "<group>";
@@ -233,6 +242,15 @@
 			children = (
 			);
 			path = FrameLayout;
+			sourceTree = "<group>";
+		};
+		4F9BB0A21FA751830038093B /* DemoConfig */ = {
+			isa = PBXGroup;
+			children = (
+				4F9BB0A31FA751A30038093B /* linear_layout_horizontal.json */,
+			);
+			name = DemoConfig;
+			path = Layout/DemoConfig;
 			sourceTree = "<group>";
 		};
 		4FC8E2791FA6CFFE00C96E18 /* Utils */ = {
@@ -352,6 +370,7 @@
 			files = (
 				4F1A6DD11F8F197B00A0BCE9 /* LaunchScreen.storyboard in Resources */,
 				4F1A6DCE1F8F197B00A0BCE9 /* Assets.xcassets in Resources */,
+				4F9BB0A41FA751A30038093B /* linear_layout_horizontal.json in Resources */,
 				4F1A6DCC1F8F197B00A0BCE9 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,12 +410,14 @@
 				4F781D2C1FA189130040D585 /* SQLinearLayoutViewConfig.swift in Sources */,
 				4F1A6DC71F8F197B00A0BCE9 /* AppDelegate.swift in Sources */,
 				4F3C5B791FA0BAE300551FC6 /* SQViewManager.swift in Sources */,
+				4F9BB0A61FA754E60038093B /* SQLayoutViewController的副本.swift in Sources */,
 				4F3C5B771FA0B48D00551FC6 /* SQGroupViewConfig.swift in Sources */,
 				4F1A6DF51F8F1A1E00A0BCE9 /* RootViewController.swift in Sources */,
 				4F781D2A1FA188D40040D585 /* SQLinearLayoutView.swift in Sources */,
 				4F3C5B711FA08F4100551FC6 /* SQViewModelBase.swift in Sources */,
 				4F2085BA1F96E663003CAFE8 /* SQCollectionViewHeader.swift in Sources */,
 				4F2085BC1F96E67C003CAFE8 /* SQCollectionViewFooter.swift in Sources */,
+				4F9BB0A11FA74C710038093B /* SQDemoViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
