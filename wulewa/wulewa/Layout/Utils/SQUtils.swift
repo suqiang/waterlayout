@@ -12,6 +12,17 @@ class SQUtils: NSObject {
 
 }
 
+extension UIEdgeInsets{
+     init(dict:[String:CGFloat]) {
+        
+        self.top = dict["top"] ?? 0
+        self.bottom = dict["bottom"] ?? 0
+        self.left = dict["left"] ?? 0
+        self.right = dict["right"] ?? 0
+        
+    }
+}
+
 extension UIColor {
     //返回随机颜色
     class var random: UIColor{

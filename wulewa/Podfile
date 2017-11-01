@@ -1,0 +1,21 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '9.0'
+
+target 'wulewa' do
+  # Comment this line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+pod 'HandyJSON', '~> 1.8.0'
+pod 'SwiftyJSON'
+  # Pods for wulewa
+
+  target 'wulewaTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'wulewaUITests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+end

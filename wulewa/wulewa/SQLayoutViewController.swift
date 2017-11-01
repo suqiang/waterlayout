@@ -14,20 +14,14 @@ class SQLayoutViewController: UIViewController {
     
     var rootView: SQViewBase!
     
+    var viewConfig: SQViewConfigBase
+    
     let filepath:String
     
     init(filepath:String) {
         self.filepath = filepath
+        self.viewConfig = SQViewManager.shareManager.viewConfig(withFilename: filepath)
         super.init(nibName: nil, bundle: nil)
-        
-        let abs = Bundle.main.path(forResource: filepath, ofType: nil)!
-        
-        let data:Data = try! Data.init(contentsOf: URL(fileURLWithPath: abs))
-        
-        let dict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments)
-        
-        print("\(dict)")
-        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,19 +33,21 @@ class SQLayoutViewController: UIViewController {
         
         view.backgroundColor = UIColor.white
 
-       
+        let viewModel = SQViewManager.shareManager.viewModelClass(viewname: viewConfig.view)!.init(config: viewConfig, dataDict: ["key1":"value1"])
         
-//        let viewModel = SQLinearLayoutViewModel(config: horizontalConfig, dataDict: ["key1":"value1"])
-//        viewModel.setNeedLayout(width: 500, height: CGFloat(MAXFLOAT))
-//
-//        let rootView = SQLinearLayoutView(layoutConfig: horizontalConfig);
-//
-//        rootView.viewModel = viewModel
-//
-//        self.view.addSubview(rootView)
-//        rootView.frame.origin.y = 100
-//        self.viewModel = viewModel
-//        self.rootView = rootView
+        let width = view.frame.width - self.viewConfig.margin.left.screenFit(self.viewConfig.fit_enabled) -
+        self.viewConfig.margin.right.screenFit(self.viewConfig.fit_enabled)
+        viewModel.setNeedLayout(width: width, height: CGFloat(MAXFLOAT))
+
+        let rootView = SQViewManager.shareManager.viewClass(viewname: viewConfig.view)!.init(layoutConfig: viewConfig)
+
+        rootView.viewModel = viewModel
+
+        self.view.addSubview(rootView)
+        rootView.frame.origin.y = 100
+        rootView.frame.origin.x = self.viewConfig.margin.left.screenFit(self.viewConfig.fit_enabled)
+        self.viewModel = viewModel
+        self.rootView = rootView
         
     }
     

@@ -37,13 +37,13 @@ class SQGroupViewModel: SQViewModelBase {
 
         let subWidth: CGFloat =  getSize(sizeType: subviewModel.config.width_type,
                                          parentSize: parentWidth - widthUsed,
-                                         space: config.padding.left + config.padding.right + subviewModel.config.margin.left + subviewModel.config.margin.right,
-                                         subSize: subviewModel.config.width)
+                                         space: config.padding.left.screenFit(config.fit_enabled) + config.padding.right.screenFit(config.fit_enabled) + subviewModel.config.margin.left.screenFit(subviewModel.config.fit_enabled) + subviewModel.config.margin.right.screenFit(subviewModel.config.fit_enabled),
+                                         subSize: subviewModel.config.width.screenFit(subviewModel.config.fit_enabled))
         
         let subHeight: CGFloat = getSize(sizeType: subviewModel.config.height_type,
                                          parentSize: parentHeight - heightUsed,
-                                         space: config.padding.top + config.padding.bottom + subviewModel.config.margin.top + subviewModel.config.margin.bottom,
-                                         subSize: subviewModel.config.height);
+                                         space: config.padding.top.screenFit(config.fit_enabled) + config.padding.bottom.screenFit(config.fit_enabled) + subviewModel.config.margin.top.screenFit(subviewModel.config.fit_enabled) + subviewModel.config.margin.bottom.screenFit(subviewModel.config.fit_enabled),
+                                         subSize: subviewModel.config.height.screenFit(subviewModel.config.fit_enabled));
 
         subviewModel.onMeasure(width: subWidth, height: subHeight);
 

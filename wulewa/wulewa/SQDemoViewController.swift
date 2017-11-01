@@ -12,8 +12,16 @@ class SQDemoViewController: UITableViewController {
     
     
     let dataArray = [["title":"横向线性","file":"linear_layout_horizontal.json"],
-                     ["title":"纵向线性","file":"linear_layout_vertical.json"],
-                     ["title":"混合线性","file":"linear_layout_vh.json"]]
+                     ["title":"纵向线性","file":"linear_layout_horizontal1.json"],
+                     ["title":"混合线性","file":"linear_layout_mix.json"],
+                     ["title":"横向权重等分","file":"linear_layout_weight_split.json"],
+                     ["title":"纵向权重等分","file":"linear_layout_weight_split_vertical.json"],
+                     ["title":"居右上对齐","file":"linear_layout_align_right_top.json"],
+                     ["title":"居中中对齐","file":"linear_layout_align_center_center.json"],
+                     ["title":"居中下对齐","file":"linear_layout_align_center_bottom.json"],
+                     ["title":"居右下对齐","file":"linear_layout_align_right_bottom.json"],
+                     ["title":"居右下对齐覆盖","file":"linear_layout_align_right_bottom_override.json"],
+                     ["title":"居右下对齐覆盖纵向","file":"linear_layout_align_right_bottom_override_vertical.json"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()

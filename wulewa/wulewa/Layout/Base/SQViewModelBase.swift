@@ -44,22 +44,23 @@ class SQViewModelBase {
         case .wrap_content:
             myWidth = 40
         case .exactly:
-            myWidth = config.width
+            myWidth = config.width.screenFit(config.fit_enabled)
         case .match_parent:
             myWidth = width
-        default:
-            myWidth = 9
+        case .weight:
+            myWidth = width
         }
         
         switch config.height_type {
         case .wrap_content:
             myHeight = 40
         case .exactly:
-            myHeight = config.height
+            myHeight = config.height.screenFit(config.fit_enabled)
         case .match_parent:
             myHeight = height
-        default:
-            myHeight = 0
+        case .weight:
+            myHeight = height
+
         }
         
         frame.size.height = myHeight

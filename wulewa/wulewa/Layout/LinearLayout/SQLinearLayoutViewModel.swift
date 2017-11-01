@@ -45,6 +45,8 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         var maxHeight: CGFloat = 0.0
         var matchParent = false
         
+        var weightTotalMargin: CGFloat = 0;
+        
         let count = subViewModels.count
         
         var viewModel: SQViewModelBase
@@ -81,6 +83,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             
             if viewConfig.width_type == .weight{
                 self.weightSum += viewConfig.weight
+                weightTotalMargin += viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled)
                 continue
             }
             
@@ -90,9 +93,11 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             
             measure(subviewModel: viewModel, parentWidth: width, widthUsed: totalSize, parentHeight: height, heightUsed: 0)
             
-            totalSize += viewModel.frame.width + viewConfig.margin.left + viewConfig.margin.right
+            totalSize += viewModel.frame.width
+                + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
+                + viewConfig.margin.right.screenFit(viewConfig.fit_enabled)
             
-            maxHeight = CGFloat.maximum(maxHeight, viewModel.frame.height + viewConfig.margin.top + viewConfig.margin.bottom)
+            maxHeight = CGFloat.maximum(maxHeight, viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))
             
             allMatchParent = allMatchParent && viewConfig.height_type == .match_parent
             
@@ -105,16 +110,16 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         case .wrap_content:
             widthSize = totalSize
         case .weight:
-            widthSize = width
+            widthSize = width -  config.padding.left.screenFit(config.fit_enabled) - config.padding.right.screenFit(config.fit_enabled)
         case .match_parent:
-            widthSize = width
+            widthSize = width -  config.padding.left.screenFit(config.fit_enabled) - config.padding.right.screenFit(config.fit_enabled)
         case .exactly:
-            widthSize = CGFloat.minimum(width, config.width) // 精确宽度最大不超过父视图提供的宽度
+            widthSize = CGFloat.minimum(width, config.width.screenFit(config.fit_enabled)) // 精确宽度最大不超过父视图提供的宽度
         }
 
         
         if weightSum > 0{
-            let shareSize = widthSize - self.totalSize
+            let shareSize = widthSize - self.totalSize - weightTotalMargin
             
             if shareSize > 0{
                 for i in 0 ..< count{
@@ -128,14 +133,14 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
                     if viewConfig.width_type == .weight{
                         let subHeight = getSize(sizeType: viewConfig.height_type,
                                                 parentSize: height,
-                                                space: config.padding.top + config.padding.bottom + viewConfig.margin.top + viewConfig.margin.bottom,
-                                                subSize: viewConfig.height)
+                                                space: config.padding.top.screenFit(config.fit_enabled) + config.padding.bottom.screenFit(config.fit_enabled) + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled),
+                                                subSize: viewConfig.height.screenFit(viewConfig.fit_enabled))
                         
                         viewModel.onMeasure(width: shareSize * viewConfig.weight / self.weightSum, height: subHeight)
                         
-                        totalSize += viewModel.frame.width + viewConfig.margin.left + viewConfig.margin.right
+                        totalSize += viewModel.frame.width + viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled)
                         
-                        maxHeight = CGFloat.maximum(maxHeight, viewConfig.margin.top + viewConfig.margin.bottom)
+                        maxHeight = CGFloat.maximum(maxHeight, viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))
                         
                         allMatchParent = allMatchParent && viewConfig.height_type == .match_parent
                     }
@@ -149,7 +154,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         case .match_parent:
             maxHeight = height == CGFloat(MAXFLOAT) ? maxHeight : height
         case .exactly:
-            maxHeight = config.height
+            maxHeight = config.height.screenFit(config.fit_enabled)
         case .weight:
             print("横向布局高度类型【weight】错误")
         case .wrap_content:
@@ -162,8 +167,8 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         
         frame = CGRect(x: 0,
                        y: 0,
-                       width: widthSize + config.padding.left + config.padding.right,
-                       height: maxHeight + config.padding.top + config.padding.bottom)
+                       width: widthSize + config.padding.left.screenFit(config.fit_enabled) + config.padding.right.screenFit(config.fit_enabled),
+                       height: maxHeight + config.padding.top.screenFit(config.fit_enabled) + config.padding.bottom.screenFit(config.fit_enabled))
         
     }
     
@@ -178,7 +183,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
                 viewConfig.height_type = .exactly
                 let oldWidth = viewModel.frame.width
                 viewModel.onMeasure(width: oldWidth,
-                                    height: height - viewConfig.margin.top - viewConfig.margin.bottom)
+                                    height: height - viewConfig.margin.top.screenFit(viewConfig.fit_enabled) - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))
                 viewConfig.height_type = .match_parent
                 viewModel.frame.size.width = oldWidth
             }
@@ -192,7 +197,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         
         var maxWidth: CGFloat = 0.0
         var matchParent = false
-        
+        var weightTotalMargin: CGFloat = 0;
         let count = subViewModels.count
         
         var viewModel: SQViewModelBase
@@ -229,6 +234,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             
             if viewConfig.height_type == .weight{
                 self.weightSum += viewConfig.weight
+                weightTotalMargin += viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled)
                 continue
             }
             
@@ -238,9 +244,9 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             
             measure(subviewModel: viewModel, parentWidth: width, widthUsed: 0, parentHeight: height, heightUsed: totalSize)
             
-            totalSize += viewModel.frame.height + viewConfig.margin.top + viewConfig.margin.bottom
+            totalSize += viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled)
             
-            maxWidth = CGFloat.maximum(maxWidth, viewModel.frame.width + viewConfig.margin.left + viewConfig.margin.right)
+            maxWidth = CGFloat.maximum(maxWidth, viewModel.frame.width + viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled))
             
         }
         
@@ -251,16 +257,16 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         case .wrap_content:
             heightSize = totalSize
         case .weight:
-            heightSize = height
+            heightSize = height - config.padding.top.screenFit(config.fit_enabled) - config.padding.bottom.screenFit(config.fit_enabled)
         case .match_parent:
-            heightSize = height
+            heightSize = height - config.padding.top.screenFit(config.fit_enabled) - config.padding.bottom.screenFit(config.fit_enabled)
         case .exactly:
-            heightSize = CGFloat.minimum(height, config.height) // 精确宽度最大不超过父视图提供的高度
+            heightSize = CGFloat.minimum(height, config.height.screenFit(config.fit_enabled)) // 精确宽度最大不超过父视图提供的高度
         }
         
         
         if weightSum > 0{
-            let shareSize = heightSize - self.totalSize
+            let shareSize = heightSize - self.totalSize - weightTotalMargin
             
             if shareSize > 0{
                 for i in 0 ..< count{
@@ -274,14 +280,14 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
                     if viewConfig.height_type == .weight{
                         let subWidth = getSize(sizeType: viewConfig.width_type,
                                                 parentSize: width,
-                                                space: config.padding.left + config.padding.right + viewConfig.margin.left + viewConfig.margin.right,
-                                                subSize: viewConfig.width)
+                                                space: config.padding.left.screenFit(config.fit_enabled) + config.padding.right.screenFit(config.fit_enabled) + viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled),
+                                                subSize: viewConfig.width.screenFit(viewConfig.fit_enabled))
                         
                         viewModel.onMeasure(width: subWidth, height: shareSize * viewConfig.weight / self.weightSum)
                         
-                        totalSize += viewModel.frame.height + viewConfig.margin.top + viewConfig.margin.bottom
+                        totalSize += viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled)
                         
-                        maxWidth = CGFloat.maximum(maxWidth, viewConfig.margin.left + viewConfig.margin.right)
+                        maxWidth = CGFloat.maximum(maxWidth,viewModel.frame.width +  viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled))
                         
                     }
                 }
@@ -292,9 +298,9 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         switch config.width_type {
             
         case .match_parent:
-            maxWidth = width == CGFloat(MAXFLOAT) ? maxWidth : width
+            maxWidth = width == CGFloat(MAXFLOAT) ? maxWidth : width - config.padding.left.screenFit(config.fit_enabled) - config.padding.right.screenFit(config.fit_enabled)
         case .exactly:
-            maxWidth = config.width
+            maxWidth = config.width.screenFit(config.fit_enabled)
         case .weight:
             print("横向布局高度类型【weight】错误")
         case .wrap_content:
@@ -307,8 +313,8 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         
         frame = CGRect(x: 0,
                        y: 0,
-                       width: maxWidth + config.padding.left + config.padding.right,
-                       height: heightSize + config.padding.top + config.padding.bottom)
+                       width: maxWidth + config.padding.left.screenFit(config.fit_enabled) + config.padding.right.screenFit(config.fit_enabled),
+                       height: heightSize + config.padding.top.screenFit(config.fit_enabled) + config.padding.bottom.screenFit(config.fit_enabled))
     }
     
     fileprivate func forceUniformWidth(count: Int,  width: CGFloat){
@@ -319,7 +325,7 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
                 
                 viewConfig.width_type = .exactly
                 let oldHeight = viewModel.frame.height
-                viewModel.onMeasure(width: width - viewConfig.margin.left - viewConfig.margin.right,
+                viewModel.onMeasure(width: width - viewConfig.margin.left.screenFit(viewConfig.fit_enabled) - viewConfig.margin.right.screenFit(viewConfig.fit_enabled),
                                     height: oldHeight)
                 viewConfig.width_type = .match_parent
                 viewModel.frame.size.height = oldHeight
@@ -335,17 +341,17 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         var originX: CGFloat = 0
         var originY: CGFloat = 0
         
-        let widthExcludePadding = frame.width - config.padding.left - config.padding.right
-        let heightExcludePadding = frame.height - config.padding.top - config.padding.bottom
+        let widthExcludePadding = frame.width - config.padding.left.screenFit(config.fit_enabled) - config.padding.right.screenFit(config.fit_enabled)
+        let heightExcludePadding = frame.height - config.padding.top.screenFit(config.fit_enabled) - config.padding.bottom.screenFit(config.fit_enabled)
         
         if myconfig.gravity.contains("bottom") {
-            originY = config.padding.top + heightExcludePadding - totalSize
+            originY = config.padding.top.screenFit(config.fit_enabled) + heightExcludePadding - totalSize
         }else if myconfig.gravity.contains("center_vertical"){
-            originY = config.padding.top + (heightExcludePadding - totalSize) * 0.5
+            originY = config.padding.top.screenFit(config.fit_enabled) + (heightExcludePadding - totalSize) * 0.5
         }else if myconfig.gravity.contains("top"){
-            originY = config.padding.left
+            originY = config.padding.left.screenFit(config.fit_enabled)
         }else {
-            originY = config.padding.left
+            originY = config.padding.left.screenFit(config.fit_enabled)
         }
         
         let count = subViewModels.count
@@ -364,19 +370,19 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             let gravity = viewConfig.layout_gravity.isEmpty ? myconfig.gravity:viewConfig.layout_gravity
             
             if gravity.contains("left"){
-                originX = config.padding.left + viewConfig.margin.left
+                originX = config.padding.left.screenFit(config.fit_enabled) + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("center_horizontal"){
-                originX = config.padding.left + (widthExcludePadding - (viewModel.frame.width + viewConfig.margin.left + viewConfig.margin.right)) * 0.5 + viewConfig.margin.left
+                originX = config.padding.left.screenFit(config.fit_enabled) + (widthExcludePadding - (viewModel.frame.width + viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled))) * 0.5 + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("right"){
-                originX = config.padding.left + widthExcludePadding - viewConfig.margin.right - viewModel.frame.size.width
+                originX = config.padding.left.screenFit(config.fit_enabled) + widthExcludePadding - viewConfig.margin.right.screenFit(config.fit_enabled) - viewModel.frame.size.width
             }else{
-                originX = config.padding.left + viewConfig.margin.left;
+                originX = config.padding.left.screenFit(config.fit_enabled) + viewConfig.margin.left.screenFit(viewConfig.fit_enabled);
             }
             
-            originY += viewConfig.margin.top
+            originY += viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
             viewModel.frame.origin.x = originX
             viewModel.frame.origin.y = originY
-            originY += viewModel.frame.height + viewConfig.margin.bottom
+            originY += viewModel.frame.height + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled)
             viewModel.onLayout()
         }
         
@@ -386,17 +392,17 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
         var originX: CGFloat = 0
         var originY: CGFloat = 0
         
-        let widthExcludePadding = frame.width - config.padding.left - config.padding.right
-        let heightExcludePadding = frame.height - config.padding.top - config.padding.bottom
+        let widthExcludePadding = frame.width - config.padding.left.screenFit(config.fit_enabled) - config.padding.right.screenFit(config.fit_enabled)
+        let heightExcludePadding = frame.height - config.padding.top.screenFit(config.fit_enabled) - config.padding.bottom.screenFit(config.fit_enabled)
         
         if myconfig.gravity.contains("right") {
-            originX = config.padding.left + widthExcludePadding - totalSize
+            originX = config.padding.left.screenFit(config.fit_enabled) + widthExcludePadding - totalSize
         }else if myconfig.gravity.contains("center_horizontal"){
-            originX = config.padding.left + (widthExcludePadding - totalSize) * 0.5
+            originX = config.padding.left.screenFit(config.fit_enabled) + (widthExcludePadding - totalSize) * 0.5
         }else if myconfig.gravity.contains("left"){
-            originX = config.padding.left
+            originX = config.padding.left.screenFit(config.fit_enabled)
         }else {
-            originX = config.padding.left
+            originX = config.padding.left.screenFit(config.fit_enabled)
         }
         
         let count = subViewModels.count
@@ -415,19 +421,19 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             let gravity = viewConfig.layout_gravity.isEmpty ? myconfig.gravity:viewConfig.layout_gravity
             
             if gravity.contains("top"){
-                originY = config.padding.top + viewConfig.margin.top
+                originY = config.padding.top.screenFit(config.fit_enabled) + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("center_vertical"){
-                originY = config.padding.top + (heightExcludePadding - (viewModel.frame.height + viewConfig.margin.top + viewConfig.margin.bottom)) * 0.5 + viewConfig.margin.top
+                originY = config.padding.top.screenFit(config.fit_enabled) + (heightExcludePadding - (viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))) * 0.5 + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("bottom"){
-                originY = config.padding.top + heightExcludePadding - viewConfig.margin.bottom - viewModel.frame.size.height
+                originY = config.padding.top.screenFit(config.fit_enabled) + heightExcludePadding - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled) - viewModel.frame.size.height
             }else{
-                originY = config.padding.top + viewConfig.margin.top;
+                originY = config.padding.top.screenFit(config.fit_enabled) + viewConfig.margin.top.screenFit(viewConfig.fit_enabled);
             }
             
-            originX += viewConfig.margin.left
+            originX += viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
             viewModel.frame.origin.x = originX
             viewModel.frame.origin.y = originY
-            originX += viewModel.frame.width + viewConfig.margin.right
+            originX += viewModel.frame.width + viewConfig.margin.right.screenFit(viewConfig.fit_enabled)
             viewModel.onLayout()
         }
         

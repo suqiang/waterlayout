@@ -28,7 +28,7 @@
       "width": 50,
       "width_type": "exactly",
       "layout_gravity": "",
-      "background_color": "#ffffffff",
+      "background_color": "#ffffff00",
       "highlight_background_color": "#ff00ff00",
       "margin": {
         "top": 10,
@@ -50,8 +50,8 @@
       "width": 150,
       "width_type": "exactly",
       "layout_gravity": "",
-      "background_color": "#ffffffff",
-      "highlight_background_color": "#ff00ff00",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
       "margin": {
         "top": 10,
         "left": 10,
