@@ -183,7 +183,9 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
                 viewConfig.height_type = .exactly
                 let oldWidth = viewModel.frame.width
                 viewModel.onMeasure(width: oldWidth,
-                                    height: height - viewConfig.margin.top.screenFit(viewConfig.fit_enabled) - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))
+                                    height: height
+                                        - viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
+                                        - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))
                 viewConfig.height_type = .match_parent
                 viewModel.frame.size.width = oldWidth
             }
@@ -370,11 +372,20 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             let gravity = viewConfig.layout_gravity.isEmpty ? myconfig.gravity:viewConfig.layout_gravity
             
             if gravity.contains("left"){
-                originX = config.padding.left.screenFit(config.fit_enabled) + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
+                originX = config.padding.left.screenFit(config.fit_enabled)
+                    + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("center_horizontal"){
-                originX = config.padding.left.screenFit(config.fit_enabled) + (widthExcludePadding - (viewModel.frame.width + viewConfig.margin.left.screenFit(viewConfig.fit_enabled) + viewConfig.margin.right.screenFit(viewConfig.fit_enabled))) * 0.5 + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
+                originX = config.padding.left.screenFit(config.fit_enabled)
+                    + (widthExcludePadding
+                        - (viewModel.frame.width
+                            + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
+                            + viewConfig.margin.right.screenFit(viewConfig.fit_enabled))) * 0.5
+                    + viewConfig.margin.left.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("right"){
-                originX = config.padding.left.screenFit(config.fit_enabled) + widthExcludePadding - viewConfig.margin.right.screenFit(config.fit_enabled) - viewModel.frame.size.width
+                originX = config.padding.left.screenFit(config.fit_enabled)
+                    + widthExcludePadding
+                    - viewConfig.margin.right.screenFit(config.fit_enabled)
+                    - viewModel.frame.size.width
             }else{
                 originX = config.padding.left.screenFit(config.fit_enabled) + viewConfig.margin.left.screenFit(viewConfig.fit_enabled);
             }
@@ -423,9 +434,17 @@ class SQLinearLayoutViewModel: SQGroupViewModel {
             if gravity.contains("top"){
                 originY = config.padding.top.screenFit(config.fit_enabled) + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("center_vertical"){
-                originY = config.padding.top.screenFit(config.fit_enabled) + (heightExcludePadding - (viewModel.frame.height + viewConfig.margin.top.screenFit(viewConfig.fit_enabled) + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))) * 0.5 + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
+                originY = config.padding.top.screenFit(config.fit_enabled)
+                    + (heightExcludePadding
+                        - (viewModel.frame.height
+                            + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
+                            + viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled))) * 0.5
+                    + viewConfig.margin.top.screenFit(viewConfig.fit_enabled)
             }else if gravity.contains("bottom"){
-                originY = config.padding.top.screenFit(config.fit_enabled) + heightExcludePadding - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled) - viewModel.frame.size.height
+                originY = config.padding.top.screenFit(config.fit_enabled)
+                    + heightExcludePadding
+                    - viewConfig.margin.bottom.screenFit(viewConfig.fit_enabled)
+                    - viewModel.frame.size.height
             }else{
                 originY = config.padding.top.screenFit(config.fit_enabled) + viewConfig.margin.top.screenFit(viewConfig.fit_enabled);
             }
