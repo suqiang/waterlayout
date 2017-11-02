@@ -55,6 +55,10 @@ extension String{
 extension String {
     /// 将十六进制颜色转换为UIColor
     func uiColor() -> UIColor {
+        
+        if self.isEmpty{
+            return UIColor.clear
+        }
         // 存储转换后的数值
         var red:UInt32 = 0, green:UInt32 = 0, blue:UInt32 = 0
         

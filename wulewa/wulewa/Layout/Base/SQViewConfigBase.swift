@@ -31,6 +31,10 @@ class SQViewConfigBase {
     var weight: CGFloat = 0
     
     var layout_gravity: String = ""
+    
+    var background_color: String = ""
+    
+    var highlight_background_color: String = ""
 
     var view: String = "viewbase"
     
@@ -55,6 +59,9 @@ class SQViewConfigBase {
         
         self.view = dict["view"] as? String ?? "viewbase"
         self.layout_gravity = dict["layout_gravity"] as? String ?? ""
+        
+        self.background_color = dict["background_color"] as? String ?? ""
+        self.highlight_background_color = dict["highlight_background_color"] as? String ?? ""
         
         // self.height.screenFit(self.fit_enabled)
         
