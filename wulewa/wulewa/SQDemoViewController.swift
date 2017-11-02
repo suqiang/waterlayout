@@ -22,7 +22,8 @@ class SQDemoViewController: UITableViewController {
                      ["title":"居右下对齐","file":"linear_layout_align_right_bottom.json"],
                      ["title":"居右下对齐覆盖","file":"linear_layout_align_right_bottom_override.json"],
                      ["title":"居右下对齐覆盖纵向","file":"linear_layout_align_right_bottom_override_vertical.json"],
-                     ["title":"帧布局","file":"frame_layout.json"]]
+                     ["title":"帧布局","file":"frame_layout.json"],
+                     ["title":"帧布局嵌套线性","file":"frame_layout_inner_linear_layout.json"]]
 
     override func viewDidLoad() {
         super.viewDidLoad()
