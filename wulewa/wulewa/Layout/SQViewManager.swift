@@ -18,7 +18,12 @@ class SQViewManager: NSObject {
                     "linear_layout":["view_name":"linear_layout",
                             "view_class":"SQLinearLayoutView",
                             "view_style_class":"SQLinearLayoutViewConfig",
-                            "view_model_class":"SQLinearLayoutViewModel"]]
+                            "view_model_class":"SQLinearLayoutViewModel"],
+                    
+                    "frame_layout":["view_name":"frame_layout",
+                                     "view_class":"SQFrameLayoutView",
+                                     "view_style_class":"SQFrameLayoutViewConfig",
+                                     "view_model_class":"SQFrameLayoutViewModel"]]
 
     static let shareManager = SQViewManager()
     private override init() {}

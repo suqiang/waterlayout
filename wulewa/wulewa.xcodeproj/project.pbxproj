@@ -46,6 +46,7 @@
 		4FA864871FA9EE54002D194B /* SQFrameLayoutViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA864861FA9EE54002D194B /* SQFrameLayoutViewModel.swift */; };
 		4FA864891FA9EEBB002D194B /* SQFrameLayoutViewConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA864881FA9EEBB002D194B /* SQFrameLayoutViewConfig.swift */; };
 		4FA8648B1FA9EEDC002D194B /* SQFrameLayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FA8648A1FA9EEDC002D194B /* SQFrameLayoutView.swift */; };
+		4FB0C0EF1FAAB2D000053C48 /* frame_layout.json in Resources */ = {isa = PBXBuildFile; fileRef = 4FB0C0EE1FAAB2C100053C48 /* frame_layout.json */; };
 		4FC8E2781FA6C59100C96E18 /* SQLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8E2771FA6C59100C96E18 /* SQLayoutViewController.swift */; };
 		4FC8E27B1FA6D01B00C96E18 /* SQUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FC8E27A1FA6D01B00C96E18 /* SQUtils.swift */; };
 		B007594AFB154D96F5ED8EAF /* Pods_wulewaTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B770222F49C24A0CF80F381E /* Pods_wulewaTests.framework */; };
@@ -118,6 +119,7 @@
 		4FA864861FA9EE54002D194B /* SQFrameLayoutViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQFrameLayoutViewModel.swift; sourceTree = "<group>"; };
 		4FA864881FA9EEBB002D194B /* SQFrameLayoutViewConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQFrameLayoutViewConfig.swift; sourceTree = "<group>"; };
 		4FA8648A1FA9EEDC002D194B /* SQFrameLayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQFrameLayoutView.swift; sourceTree = "<group>"; };
+		4FB0C0EE1FAAB2C100053C48 /* frame_layout.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = frame_layout.json; sourceTree = "<group>"; };
 		4FC8E2771FA6C59100C96E18 /* SQLayoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQLayoutViewController.swift; sourceTree = "<group>"; };
 		4FC8E27A1FA6D01B00C96E18 /* SQUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SQUtils.swift; sourceTree = "<group>"; };
 		51707D62358A2D5D858E3F54 /* Pods-wulewaUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-wulewaUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-wulewaUITests/Pods-wulewaUITests.release.xcconfig"; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 		4FA8646E1FA97A83002D194B /* DemoConfig */ = {
 			isa = PBXGroup;
 			children = (
+				4FB0C0EE1FAAB2C100053C48 /* frame_layout.json */,
 				4FA864841FA9EB26002D194B /* linear_layout_align_right_bottom_override_vertical.json */,
 				4FA864821FA9EA6E002D194B /* linear_layout_align_right_bottom_override.json */,
 				4FA8647C1FA9E922002D194B /* linear_layout_align_center_bottom.json */,
@@ -455,6 +458,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4FB0C0EF1FAAB2D000053C48 /* frame_layout.json in Resources */,
 				4FA864851FA9EB2E002D194B /* linear_layout_align_right_bottom_override_vertical.json in Resources */,
 				4FA864831FA9EA76002D194B /* linear_layout_align_right_bottom_override.json in Resources */,
 				4FA8647F1FA9E927002D194B /* linear_layout_align_center_bottom.json in Resources */,

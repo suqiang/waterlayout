@@ -1,0 +1,201 @@
+{
+  "view": "frame_layout",
+  "height": 500,
+  "height_type": "exactly",
+  "width": 0,
+  "width_type": "match_parent",
+  "background_color": "#ffffffff",
+  "highlight_background_color": "#ffff0000",
+  "margin": {
+    "top": 10,
+    "left": 10,
+    "bottom": 10,
+    "right": 10
+  },
+  "padding": {
+    "top": 5,
+    "left": 5,
+    "bottom": 5,
+    "right": 5
+  },
+  "subviewConfigs": [
+    {
+      "view": "viewbase",
+      "height": 50,
+      "height_type": "exactly",
+      "width": 50,
+      "width_type": "exactly",
+      "layout_gravity": "left|top",
+      "background_color": "#ffffff00",
+      "highlight_background_color": "#ff00ff00",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    },
+    {
+      "view": "viewbase",
+      "height": 40,
+      "height_type": "exactly",
+      "width": 40,
+      "width_type": "exactly",
+      "layout_gravity": "left|bottom",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    },
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "right|top",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    },
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "center_horizontal|center_vertical",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    }
+    ,
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "center_horizontal|bottom",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    },
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "center_horizontal|top",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    },
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "left|center_vertical",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    }
+    ,
+    {
+      "view": "viewbase",
+      "height": 60,
+      "height_type": "exactly",
+      "width": 60,
+      "width_type": "exactly",
+      "layout_gravity": "right|center_vertical",
+      "background_color": "#fff00fff",
+      "highlight_background_color": "#ff0000ff",
+      "margin": {
+        "top": 10,
+        "left": 10,
+        "bottom": 10,
+        "right": 10
+      },
+      "padding": {
+        "top": 5,
+        "left": 5,
+        "bottom": 5,
+        "right": 5
+      }
+    }
+  ]
+}

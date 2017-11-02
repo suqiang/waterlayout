@@ -20,7 +20,7 @@ class SQLinearLayoutViewConfig: SQGroupViewConfig {
         super.init(dict: dict)
     }
 }
-
+ 
 
 
 enum SQLinearLayoutOrientation : String {

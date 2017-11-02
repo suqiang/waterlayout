@@ -63,7 +63,7 @@ class SQViewConfigBase {
 }
 
 let kSizeScale: CGFloat = {
-    return CGFloat.minimum(UIScreen.main.bounds.width, UIScreen.main.bounds.height) / 320.0
+    return CGFloat.minimum(UIScreen.main.bounds.width, UIScreen.main.bounds.height) / 750.0
 }()
 
 let kScreenScale: CGFloat = {
